@@ -28,7 +28,17 @@ describe('Fitur Login OrangeHRM - Tugas 16 Intercept', () => {
         cy.get('button[type="submit"]').click()
         cy.wait('@invalidusername').its('response.statusCode').should('eq', 302)
         cy.url().should('include', '/auth/login')
-      })
+    })
+
+      it('Login gagal dengan password salah', () => {
+        cy.intercept('POST', '**/auth/validate').as('invalidpassword')
+        cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
+        cy.get('[name="username"]').type('Admin')
+        cy.get('[name="password"]').type('Bulan123')
+        cy.get('button[type="submit"]').click()
+        cy.wait('@invalidpassword').its('response.statusCode').should('eq', 302)
+        cy.url().should('include', '/auth/login')
+    })
 
     it('Gagal login dengan username dan password kosong', () => {
       cy.intercept('POST', '**/auth/validate').as('empty')
@@ -43,10 +53,9 @@ describe('Fitur Login OrangeHRM - Tugas 16 Intercept', () => {
      cy.intercept('GET', '**/auth/requestPasswordResetCode').as('Resetpassword')
 
      cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
-     cy.contains('Forgot your password?').click();    
+     cy.contains('Forgot your password?').click()  
      cy.wait('@Resetpassword')
      cy.url().should('include', '/requestPasswordResetCode')
     })
-
 
 })
