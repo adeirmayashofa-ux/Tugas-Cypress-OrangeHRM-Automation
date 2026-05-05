@@ -32,6 +32,7 @@ describe('Fitur Login OrangeHRM - Tugas 16 Intercept', () => {
 
       it('Login gagal dengan password salah', () => {
         cy.intercept('POST', '**/auth/validate').as('invalidpassword')
+        
         cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
         cy.get('[name="username"]').type('Admin')
         cy.get('[name="password"]').type('Bulan123')
