@@ -58,10 +58,9 @@ describe('Fitur Login OrangeHRM', () => {
   it('TC_LOGIN_010 - Verifikasi terdapat 4 ikon media sosial di footer login', () => {
     cy.get('.orangehrm-login-footer-sm > a').should('have.length', 4)
   })
-
  
   it('TC_LOGIN_011 - Login gagal dengan username yang tidak terdaftar', () => {
-    cy.get('[name="username"]').type('UserTidakAda') // Ganti username ke yang pasti salah
+    cy.get('[name="username"]').type('UserTidakAda')
     cy.get('[name="password"]').type('admin123')
     cy.get('button[type="submit"]').click()
   })
