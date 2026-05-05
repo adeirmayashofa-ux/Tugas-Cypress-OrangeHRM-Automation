@@ -59,7 +59,7 @@ describe('Fitur Login OrangeHRM', () => {
     cy.get('.orangehrm-login-footer-sm > a').should('have.length', 4)
   })
 
-  // TC_LOGIN_011: Perbaikan agar statusnya Passed
+ 
   it('TC_LOGIN_011 - Login gagal dengan username yang tidak terdaftar', () => {
     cy.get('[name="username"]').type('UserTidakAda') // Ganti username ke yang pasti salah
     cy.get('[name="password"]').type('admin123')
