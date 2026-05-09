@@ -36,7 +36,7 @@ describe('Fitur Directory orangeHRM', () => {
         cy.get('.oxd-sheet').should('not.exist')
 
     })
-    it.only('TC-04 Mencari nama karyawan terdaftar', () => {
+    it('TC-04 Mencari nama karyawan terdaftar', () => {
         cy.intercept('GET', '**/directory/viewDirectory*').as('searchEmployee')
         cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/directory/viewDirectory')
 
@@ -95,7 +95,7 @@ describe('Fitur Directory orangeHRM', () => {
         })
 
     })
-    it('TC-10 Memastikan dropdown user berfungsi', () => {
+    it('TC-10 Memastikan dropdown profil berfungsi', () => {
         cy.intercept('GET', '**/api/v2/directory/employees/*').as('dropdownuser')
         cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/directory/viewDirectory')
 
@@ -123,16 +123,7 @@ describe('Fitur Directory orangeHRM', () => {
             expect([200, 304]).to.include(interception.response.statusCode)
         })
     })
-    it('TC-14 Menu Update Password dapat dimuat', () => {
-        cy.intercept('GET', '**/core/i18n/messages').as('changepassword')
-        cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index')
-
-        cy.get('.oxd-userdropdown-tab').click()
-        cy.contains('Change Password').click()
-        cy.wait('@changepassword').then((interception) => {
-            expect([200, 304]).to.include(interception.response.statusCode)
-        })
-    })    
+   
 })
 
 

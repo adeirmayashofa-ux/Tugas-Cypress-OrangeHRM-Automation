@@ -13,6 +13,7 @@ describe('Fitur Login OrangeHRM', () => {
         loginPage.ClickForgotPassword()
         loginPage.InputUsername(LoginData.UsernameResetPassword)
         loginPage.ClickButtonResetPassword()
+        loginPage.ResetSuccessfully()
     })
     it('Tidak jadi reset password', () => {
         loginPage.BukaHalaman()

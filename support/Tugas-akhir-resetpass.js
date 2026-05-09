@@ -40,5 +40,12 @@ class loginPage {
     BukaHalamanForgotPassword(){
         cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/requestPasswordResetCode')
     }
+    ClickButtonResetPassword(){
+        cy.get('button[type="submit"]').click()
+    }
+    ResetSuccessfully(){
+        cy.get('.orangehrm-card-container').should('be.visible')
+        cy.contains('Reset Password link sent successfully')
+    }
 }
     export default new loginPage();
